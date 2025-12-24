@@ -4,6 +4,9 @@ dotenv.config();
 
 const TheDb = new Database(process.env.DATABASE_NAME);
 
+/**
+ * Creates the entire initial database and its tables.
+ */
 function init() {
     console.log("Creating the database.");
     try {
@@ -36,8 +39,12 @@ function init() {
             chat_data_id TEXT NOT NULL,
             PRIMARY KEY (chat_data_id, chat_id),
             FOREIGN KEY(chat_id) REFERENCES chats(id),
-            FOREIGN KEY(chat_data_id) REFERENCES chat_datas(id));
-        `);
+            FOREIGN KEY(chat_data_id) REFERENCES chat_datas(id));`);
+
+        const createMigrations = TheDb.prepare(`CREATE TABLE IF NOT EXISTS migrations(
+            id TEXT PRIMARY KEY,
+            date TEXT NOT NULL,
+            version_number TEXT NOT NULL);`);
 
         const create = TheDb.transaction(() => {
             createChats.run();
@@ -45,6 +52,7 @@ function init() {
             createChatsDatas.run();
             createChatThreadsChatsMap.run();
             createChatsChatDatasMap.run();
+            createMigrations.run();
         });
 
         create();
