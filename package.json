@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "ts-node src/server.ts",
     "build": "tsc",
-    "start": "node dist/server.js"
+    "start": "node dist/server.js",
+    "init_db": "ts-node src/utils/script_init_db_tables.ts"
   },
   "dependencies": {
     "@types/cors": "^2.8.19",
@@ -19,5 +20,8 @@
     "ts-node": "10.9.2",
     "typescript": "5.9.3",
     "zod": "^4.2.1"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13"
   }
 }

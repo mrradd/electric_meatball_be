@@ -2,7 +2,11 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import chatRouter from "./routes/chat";
+
 dotenv.config();
+
+const Database = require('better-sqlite3');
+export const TheDb = new Database(process.env.DATABASE_NAME);
 
 const PORT = Number(process.env.PORT || 3000);
 const HOST = process.env.HOST || "localhost";

@@ -1,4 +1,4 @@
-DATABASE_URL=sqlite:./emdb.sqlite
-DATABASE_HOST=localhost
-DATABASE_PORT=3000
+DATABASE_NAME=em.db
+HOST=localhost
+PORT=3000
 OPENAI_API_KEY=your-openai-api-key

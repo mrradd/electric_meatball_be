@@ -14,7 +14,7 @@ export type ChatThread = {
 export type ChatDatas = {
     id: string, //UUID
     model: string,
-    tokens: string,
+    tokens: number,
     created_date: string,
 }
 
