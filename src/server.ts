@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
-import chatRouter from "./routes/chat";
+import chatRouter from "./routes/Chat";
 
 dotenv.config();
 
@@ -16,8 +16,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.get("/", (req, res) => {
-    res.send("42");
+app.get("/heartbeat", (req, res) => {
+    res.json({ data: "42" });
 });
 
 app.use("/api/v1/chat", chatRouter);
@@ -29,5 +29,3 @@ const server = app.listen(PORT, HOST, () => {
 server.on("error", (err) => {
     console.error("Server error:", err);
 });
-
-

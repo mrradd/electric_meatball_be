@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "ts-node src/server.ts",
+    "dev": "ts-node src/Server.ts",
     "build": "tsc",
-    "start": "node dist/server.js",
+    "start": "node dist/Server.js",
     "init_db": "ts-node src/utils/script_init_db_tables.ts"
   },
   "dependencies": {

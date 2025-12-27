@@ -1,22 +1,16 @@
 import OpenAI from "openai";
 import express from "express";
-import { ChatRequestDtoSchema } from "../dtos/chatDtos";
+import { ChatRequestDtoSchema } from "../dtos/ChatDtos";
+import { processChatMessage } from "../businessLogic/ChatBusinessLogic";
+
 
 const chatRouter = express.Router();
 
 chatRouter.post("/", async (req, res) => {
     try {
-        const openai = new OpenAI({
-            apiKey: process.env.OPENAI_API_KEY,
-        });
         const dto = ChatRequestDtoSchema.parse(req.body);
-
-        const response = await openai.chat.completions.create({
-            model: dto.model,
-            messages: [{ role: "user", content: dto.message }],
-        });
-
-        res.json({ message: response.choices[0].message.content });
+        const result = await processChatMessage(dto.model, dto.threadId || "", dto.message);
+        res.status(200).json(result);
     }
     catch (error: any) {
         console.error(error);

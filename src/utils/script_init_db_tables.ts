@@ -58,8 +58,7 @@ function init() {
         create();
     }
     catch (error: any) {
-        console.log("derp")
-        console.error(error.message);
+        console.error(`There was an error creating the database ${error.message}`);
         return;
     }
 
